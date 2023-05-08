@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\ApiInvoiceController;
+use App\Http\Controllers\Api\InvoiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
