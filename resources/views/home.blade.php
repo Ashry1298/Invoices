@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    لوحه التحكم -برنامج الفواتير
+{{__('main.invPro')}}
 @endsection
 @section('css')
     @include('inc.css')
@@ -10,27 +10,25 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="left-content">
             <div>
-                <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">مرحبا بك </h2>
-                <p class="mg-b-0">برنامج عرض الفواتير</p>
+                <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1"> {{ __('main.welcome') }} </h2>
+                <p class="mg-b-0"> </p>
             </div>
         </div>
         <div class="main-dashboard-header-right">
             <div>
-                <label class="tx-13">Customer Ratings</label>
+                <label class="tx-13">@lang('main.custrating')</label>
                 <div class="main-star">
                     <i class="typcn typcn-star active"></i> <i class="typcn typcn-star active"></i> <i
                         class="typcn typcn-star active"></i> <i class="typcn typcn-star active"></i> <i
                         class="typcn typcn-star"></i> <span>(14,873)</span>
                 </div>
             </div>
+
             <div>
-                <label class="tx-13">Online Sales</label>
+                <label class="tx-13">{{__('main.online sales')}}</label>
                 <h5>563,275</h5>
             </div>
-            <div>
-                <label class="tx-13">Offline Sales</label>
-                <h5>783,675</h5>
-            </div>
+  
         </div>
     </div>
     <!-- /breadcrumb -->
@@ -46,7 +44,7 @@
             <div class="card overflow-hidden sales-card bg-primary-gradient">
                 <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                     <div class="">
-                        <h6 class="mb-3 tx-12 text-white"> اجمالى الفواتير</h6>
+                        <h6 class="mb-3 tx-12 text-white"> {{ __('main.allInv') }} </h6>
                     </div>
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
@@ -56,7 +54,7 @@
                                         {{ number_format(App\Models\Invoice::sum('total')) }}
                                 </h3>
                                 @endif
-                                <h6 class="mb-3 tx-12 text-white"> عدد الفواتير : {{ App\Models\Invoice::count() }} </h6>
+                                <h6 class="mb-3 tx-12 text-white"> {{ __('main.invNum') }} {{ App\Models\Invoice::count() }} </h6>
                             </div>
                             <span class="float-right my-auto mr-auto">
                                 <i class="fas fa-arrow-circle-up text-white"></i>
@@ -72,7 +70,7 @@
             <div class="card overflow-hidden sales-card bg-success-gradient">
                 <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                     <div class="">
-                        <h4 class="mb-3 tx-12 text-white">الفواتير المدفوعه </h4>
+                        <h4 class="mb-3 tx-12 text-white"> {{ __('main.paidInv') }} </h4>
                     </div>
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
@@ -80,7 +78,7 @@
                                 <h3 class="tx-20 font-weight-bold mb-1 text-white">
                                         {{ number_format(App\Models\Invoice::where('id','>',0)->where('status', 1)->sum('total')) }}
                                 </h3>
-                                <h6 class="mb-3 tx-12 text-white"> عدد الفواتير :
+                                <h6 class="mb-3 tx-12 text-white">{{ __('main.invNum') }}
                                     {{ App\Models\Invoice::where('status', 1)->count() }} </h6>
                             </div>
                             <span class="float-right my-auto mr-auto">
@@ -105,7 +103,7 @@
             <div class="card overflow-hidden sales-card bg-danger-gradient">
                 <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                     <div class="">
-                        <h6 class="mb-3 tx-12 text-white"> الفواتير غير المدفوعه</h6>
+                        <h6 class="mb-3 tx-12 text-white">{{ __('main.unPaidInv') }}</h6>
                     </div>
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
@@ -113,7 +111,7 @@
                                 <h3 class="tx-20 font-weight-bold mb-1 text-white">
                                         {{ number_format(App\Models\Invoice::where('id','>',0)->where('status', 2)->sum('total')) }}
                                 </h3>
-                                <h6 class="mb-3 tx-12 text-white"> عدد الفواتير :
+                                <h6 class="mb-3 tx-12 text-white"> {{ __('main.invNum') }}
                                         {{ App\Models\Invoice::where('id','>',0)->where('status', 2)->count() }}
                                 </h6>
                             </div>
@@ -139,7 +137,7 @@
             <div class="card overflow-hidden sales-card bg-warning-gradient">
                 <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                     <div class="">
-                        <h6 class="mb-3 tx-12 text-white"> الفواتير المدفوعه جزئيا</h6>
+                        <h6 class="mb-3 tx-12 text-white"> {{ __('main.partialInv') }}</h6>
                     </div>
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
@@ -149,7 +147,7 @@
                                         {{ number_format(App\Models\Invoice::where('id','>',0)->where('status', 3)->sum('total')) }}
                                 </h3>
                                
-                                <h6 class="mb-3 tx-12 text-white"> عدد الفواتير :
+                                <h6 class="mb-3 tx-12 text-white"> {{ __('main.invNum') }}
                                         {{ App\Models\Invoice::where('id','>',0)->where('status', 3)->count() }}
                                 </h6>
                             </div>
@@ -173,7 +171,7 @@
             <div class="card">
                 <div class="card-header bg-transparent pd-b-0 pd-t-20 bd-b-0">
                     <div class="d-flex justify-content-between">
-                        <h2 class="card-title mb-0">رسم بيانى للعملاء </h2>
+                        <h2 class="card-title mb-0"> {{ __('main.custoGraph') }} </h2>
                         <div style="width:75%;">
                             @if ($invoice != 0)
                                 {!! $chartjs->render() !!}
@@ -190,7 +188,7 @@
         </div>
         <div class="col-lg-12 col-xl-5">
             <div class="card card-dashboard-map-one">
-                <label class="main-content-label"> احصائيه الفواتير بالنسبه المئويه</label>
+                <label class="main-content-label"> {{ __('main.allInvWithPerc') }} </label>
                 <div class="">
 
                     <div style="width:100%;">

@@ -3,7 +3,7 @@
     <!--Internal   Notify -->
     <link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet" />
 @section('title')
-    صلاحيات المستخدمين - مورا سوفت للادارة القانونية
+{{__('main.usersperm')}}
 @stop
 
 
@@ -13,8 +13,8 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">المستخدمين</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"> /
-                صلاحيات المستخدمين</span>
+            <h4 class="content-title mb-0 my-auto">{{__('main.users')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"> /
+                {{__('main.usersperm')}} </span>
         </div>
     </div>
 </div>
@@ -68,7 +68,7 @@
                     <div class="col-lg-12 margin-tb">
                         <div class="pull-right">
                             @can('اضافة صلاحية')
-                                <a class="btn btn-primary btn-sm" href="{{ route('roles.create') }}">اضافة</a>
+                                <a class="btn btn-primary btn-sm" href="{{ route('roles.create') }}">{{__('main.add')}}</a>
                             @endcan
                         </div>
                     </div>
@@ -82,8 +82,8 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>الاسم</th>
-                                <th>العمليات</th>
+                                <th>{{__('main.name')}}</th>
+                                <th>{{__('main.proc')}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -94,12 +94,12 @@
                                     <td>
                                         @can('عرض صلاحية')
                                             <a class="btn btn-success btn-sm"
-                                                href="{{ route('roles.show', $role->id) }}">عرض</a>
+                                                href="{{ route('roles.show', $role->id) }}">{{__('main.show')}}</a>
                                         @endcan
                                         
                                         @can('تعديل صلاحية')
                                             <a class="btn btn-primary btn-sm"
-                                                href="{{ route('roles.edit', $role->id) }}">تعديل</a>
+                                                href="{{ route('roles.edit', $role->id) }}">{{__('main.edit')}}</a>
                                         @endcan
 
                                         @if ($role->name !== 'owner')

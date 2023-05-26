@@ -15,7 +15,7 @@
     <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
 
 @section('title')
- تقرير العملاء -
+    تقرير العملاء -
 @stop
 @endsection
 @section('page-header')
@@ -23,8 +23,9 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">التقارير</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ تقرير
-                العملاء</span>
+            <h4 class="content-title mb-0 my-auto">{{ __('main.reports') }}</h4><span
+                class="text-muted mt-1 tx-13 mr-2 mb-0">/
+                {{ __('main.custrep') }}</span>
         </div>
     </div>
 </div>
@@ -57,14 +58,14 @@
 
                 <form action="{{ route('reportsCustomers.search') }}" method="POST" role="search" autocomplete="off">
                     @csrf
-                  
+
                     <div class="row">
                         <div class="col">
-                            <label for="inputName" class="control-label">القسم</label>
+                            <label for="inputName" class="control-label">{{ __('main.section') }}</label>
                             <select name="section" class="form-control select2" onclick="console.log($(this).val())"
                                 onchange="console.log('change is firing')">
                                 <!--placeholder-->
-                                <option value="" selected disabled>حدد القسم</option>
+                                <option value="" selected disabled> {{ __('main.choosesection') }}</option>
                                 @foreach ($sections as $section)
                                     <option value="{{ $section->id }}">{{ $section->section_name }} </option>
                                 @endforeach
@@ -72,13 +73,13 @@
                             </select>
                         </div>
                         <div class="col-lg-3 mg-t-20 mg-lg-t-0">
-                            <label for="inputName" class="control-label">المنتج</label>
+                            <label for="inputName" class="control-label">{{ __('main.product') }}</label>
                             <select id="product" name="product" class="form-control select2">
                             </select>
                         </div>
-                       
+
                         <div class="col-lg-3" id="start_at">
-                            <label for="exampleFormControlSelect1">من تاريخ</label>
+                            <label for="exampleFormControlSelect1"> {{ __('main.from') }}</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
@@ -90,7 +91,7 @@
                         </div>
 
                         <div class="col-lg-3" id="end_at">
-                            <label for="exampleFormControlSelect1">الي تاريخ</label>
+                            <label for="exampleFormControlSelect1"> {{ __('main.to') }}</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
@@ -104,7 +105,7 @@
 
                     <div class="row">
                         <div class="col-sm-1 col-md-1">
-                            <button class="btn btn-primary btn-block">بحث</button>
+                            <button class="btn btn-primary ">{{ __('main.search') }}</button>
                         </div>
                     </div>
                 </form>
@@ -113,52 +114,52 @@
             <div class="card-body">
                 <div class="table-responsive">
                     @if (isset($invoices))
-                    <table id="example" class="table key-buttons text-md-nowrap" style=" text-align: center">
-                        <thead>
-                            <tr>
-                                <th class="border-bottom-0">#</th>
-                                <th class="border-bottom-0">رقم الفاتورة</th>
-                                <th class="border-bottom-0">تاريخ القاتورة</th>
-                                <th class="border-bottom-0">تاريخ الاستحقاق</th>
-                                <th class="border-bottom-0">المنتج</th>
-                                <th class="border-bottom-0">القسم</th>
-                                <th class="border-bottom-0">الخصم</th>
-                                <th class="border-bottom-0">نسبة الضريبة</th>
-                                <th class="border-bottom-0">قيمة الضريبة</th>
-                                <th class="border-bottom-0">الاجمالي</th>
-                                <th class="border-bottom-0">الحالة</th>
-                                <th class="border-bottom-0">ملاحظات</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        
-                            @foreach ($invoices as $x => $invoice)
+                        <table id="example" class="table key-buttons text-md-nowrap" style=" text-align: center">
+                            <thead>
                                 <tr>
-                                    <td>{{ $x + 1 }}</td>
-                                    <td>{{ $invoice->invoice_number }}</td>
-                                    <td>{{ $invoice->invoice_date }}</td>
-                                    <td>{{ $invoice->due_date }}</td>
-                                    <td>{{ $invoice->product }}</td>
-                                    <td>{{ $invoice->section->section_name }}</td>
-                                    <td>{{ $invoice->discount }}</td>
-                                    <td>{{ $invoice->rate_vat }}</td>
-                                    <td>{{ $invoice->value_vate }}</td>
-                                    <td>{{ $invoice->total }}</td>
-                                    <td>
-                                        @if ($invoice->status == 1)
-                                            <span class="badge badge-pill badge-success">
-                                                {{ 'مدفوعه' }}</span>
-                                        @elseif($invoice->status == 2)
-                                            <span class="badge badge-pill badge-danger">{{ 'غير مدفوعه' }}</span>
-                                        @else
-                                            <span class="badge badge-pill badge-info">{{ ' مدفوعه جزئيا' }}</span>
-                                        @endif
-                                    </td>
-                                    <td>{{ $invoice->note }}</td>
+                                    <th class="border-bottom-0">#</th>
+                                    <th class="border-bottom-0">{{ __('main.invoiceNum') }} </th>
+                                    <th class="border-bottom-0">{{ __('main.invdate') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.duedate') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.product') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.section') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.discount') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.taxrate') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.taxvat') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.tot') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.status') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.notes') }}</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+
+                                @foreach ($invoices as $x => $invoice)
+                                    <tr>
+                                        <td>{{ $x + 1 }}</td>
+                                        <td>{{ $invoice->invoice_number }}</td>
+                                        <td>{{ $invoice->invoice_date }}</td>
+                                        <td>{{ $invoice->due_date }}</td>
+                                        <td>{{ $invoice->product }}</td>
+                                        <td>{{ $invoice->section->section_name }}</td>
+                                        <td>{{ $invoice->discount }}</td>
+                                        <td>{{ $invoice->rate_vat }}</td>
+                                        <td>{{ $invoice->value_vate }}</td>
+                                        <td>{{ $invoice->total }}</td>
+                                        <td>
+                                            @if ($invoice->status == 1)
+                                                <span class="badge badge-pill badge-success">
+                                                    {{__('main.paid')}}</span>
+                                            @elseif($invoice->status == 2)
+                                                <span class="badge badge-pill badge-danger">{{__('main.unpaid')}}</span>
+                                            @else
+                                                <span class="badge badge-pill badge-info">{{__('main.partial')}}</span>
+                                            @endif
+                                        </td>
+                                        <td>{{ $invoice->note }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     @endif
 
                 </div>

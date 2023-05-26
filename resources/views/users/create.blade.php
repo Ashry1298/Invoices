@@ -3,7 +3,7 @@
     <!-- Internal Nice-select css  -->
     <link href="{{ URL::asset('assets/plugins/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet" />
 @section('title')
-    اضافة مستخدم - مورا سوفت للادارة القانونية
+ {{__('main.addus')}} 
 @stop
 
 
@@ -13,8 +13,8 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">المستخدمين</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ اضافة
-                مستخدم</span>
+            <h4 class="content-title mb-0 my-auto">{{__('main.users')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ 
+                {{__('main.addus')}} </span>
         </div>
     </div>
 </div>
@@ -45,7 +45,7 @@
             <div class="card-body">
                 <div class="col-lg-12 margin-tb">
                     <div class="pull-right">
-                        <a class="btn btn-primary btn-sm" href="">رجوع</a>
+                        <a class="btn btn-primary btn-sm" href="{{route('users.index')}}">{{__('main.back')}}</a>
                     </div>
                 </div><br>
                 <form class="parsley-style-1" id="selectForm2" autocomplete="off" name="selectForm2"
@@ -54,14 +54,14 @@
                     <div class="">
                         <div class="row mg-b-20">
                             <div class="parsley-input col-md-6" id="fnWrapper">
-                                <label>اسم المستخدم: <span class="tx-danger">*</span></label>
+                                <label> {{__('main.username')}} <span class="tx-danger">*</span></label>
                                 <input class="form-control form-control-sm mg-b-20"
                                     data-parsley-class-handler="#lnWrapper" name="name" required=""
                                     type="text">
                             </div>
 
                             <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                                <label>البريد الالكتروني: <span class="tx-danger">*</span></label>
+                                <label>{{__('main.email')}}<span class="tx-danger">*</span></label>
                                 <input class="form-control form-control-sm mg-b-20"
                                     data-parsley-class-handler="#lnWrapper" name="email" required=""
                                     type="email">
@@ -72,13 +72,13 @@
 
                     <div class="row mg-b-20">
                         <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                            <label>كلمة المرور: <span class="tx-danger">*</span></label>
+                            <label> {{__('main.pass')}}<span class="tx-danger">*</span></label>
                             <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper"
                                 name="password" required="" type="password">
                         </div>
 
                         <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                            <label> تاكيد كلمة المرور: <span class="tx-danger">*</span></label>
+                            <label> {{__('main.passconf')}} <span class="tx-danger">*</span></label>
                             <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper"
                                 name="password_confirmation" required="" type="password">
                         </div>
@@ -86,10 +86,10 @@
 
                     <div class="row row-sm mg-b-20">
                         <div class="col-lg-6">
-                            <label class="form-label">حالة المستخدم</label>
+                            <label class="form-label">{{__('main.userstauts')}} </label>
                             <select name="status" id="select-beast" class="form-control  nice-select  custom-select">
-                                <option value="مفعل">مفعل</option>
-                                <option value="غير مفعل">غير مفعل</option>
+                                <option value="مفعل">{{__('main.active')}}</option>
+                                <option value="غير مفعل"> {{__('main.unactive')}}</option>
                             </select>
                         </div>
                     </div>
@@ -97,7 +97,7 @@
                         <div class="col-xs-12 col-md-12">
                             <div class="form-group">
                                 <div class="form-group">
-                                    <label for="role_name">صلاحيه المستخدم </label>
+                                    <label for="role_name">{{__('main.userperm')}} </label>
                                     <select class="form-control" id="roles_name" name="roles_name">
                                         @foreach ($roles as $role)
                                             <option value={{ $role->name }}>{{ $role->name }}</option>
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                        <button class="btn btn-main-primary pd-x-20" type="submit">تاكيد</button>
+                        <button class="btn btn-main-primary pd-x-20" type="submit">{{__('main.submit')}}</button>
                     </div>
                 </form>
             </div>

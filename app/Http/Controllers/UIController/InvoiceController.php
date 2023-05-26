@@ -34,7 +34,7 @@ class InvoiceController extends Controller
     {
         $this->middleware('permission:القائمه الكامله للفواتير', ['only' => ['index']]);
         $this->middleware('permission:الفواتير المدفوعه', ['only' => ['paidInvoices']]);
-        $this->middleware('permission:الفواتير غير المدفوعه ', ['only' => ['unPaidInvoices']]);
+        $this->middleware('permission:الفواتير غير المدفوعه', ['only' => ['unPaidInvoices']]);
         $this->middleware('permission:الفواتير المدفوعه جزئيا', ['only' => ['partialInvoices']]);
         $this->middleware('permission:اضافة فاتورة', ['only' => ['create', 'store']]);
         $this->middleware('permission:تعديل الفاتورة', ['only' => ['edit', 'update']]);

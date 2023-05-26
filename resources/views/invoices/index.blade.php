@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    عرض الفواتير
+{{__('main.show')}} {{__('main.inv')}}
 @endsection
 @section('css')
     @include('inc.css')
@@ -11,8 +11,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">الفواتير </h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ قائمه
-                    الفواتير</span>
+                <h4 class="content-title mb-0 my-auto">@lang('main.inv') </h4>
             </div>
         </div>
     </div>
@@ -28,13 +27,18 @@
             <div class="card mg-b-20">
                 <div class="card-header pb-0">
                     @can('اضافة فاتورة')
-                        <a class="btn btn-primary" href="{{ route('invoices.create') }}" role="button">اضافه فاتوره</a>
+                        <a class="btn btn-primary" href="{{ route('invoices.create') }}" role="button">
+                            {{ __('main.addInv') }}</a>
                     @endcan
                     @can('تصدير EXCEL')
-                        <a class="btn btn-secondary " href="{{ route('invoices.export') }}" role="button">تصدير اكسيل</a>
+                        <a class="btn btn-secondary " href="{{ route('invoices.export') }}"
+                            role="button">{{ __('main.excel') }} </a>
                     @endcan
 
                 </div>
+
+
+
 
                 <div class="card-body">
                     <div class="table-responsive">
@@ -44,18 +48,18 @@
                                 <thead>
                                     <tr>
                                         <th class="border-bottom-0">#</th>
-                                        <th class="border-bottom-0">رقم الفاتورة</th>
-                                        <th class="border-bottom-0">تاريخ القاتورة</th>
-                                        <th class="border-bottom-0">تاريخ الاستحقاق</th>
-                                        <th class="border-bottom-0">المنتج</th>
-                                        <th class="border-bottom-0">القسم</th>
-                                        <th class="border-bottom-0">الخصم</th>
-                                        <th class="border-bottom-0">نسبة الضريبة</th>
-                                        <th class="border-bottom-0">قيمة الضريبة</th>
-                                        <th class="border-bottom-0">الاجمالي</th>
-                                        <th class="border-bottom-0">الحالة</th>
-                                        <th class="border-bottom-0">ملاحظات</th>
-                                        <th class="border-bottom-0">العمليات</th>
+                                        <th class="border-bottom-0">{{ __('main.invoiceNum') }} </th>
+                                        <th class="border-bottom-0">{{ __('main.invdate') }}</th>
+                                        <th class="border-bottom-0">{{ __('main.duedate') }}</th>
+                                        <th class="border-bottom-0">{{ __('main.product') }}</th>
+                                        <th class="border-bottom-0">{{ __('main.section') }}</th>
+                                        <th class="border-bottom-0">{{ __('main.discount') }}</th>
+                                        <th class="border-bottom-0">{{ __('main.taxrate') }}</th>
+                                        <th class="border-bottom-0">{{ __('main.taxvat') }}</th>
+                                        <th class="border-bottom-0">{{ __('main.tot') }}</th>
+                                        <th class="border-bottom-0">{{ __('main.status') }}</th>
+                                        <th class="border-bottom-0">{{ __('main.notes') }}</th>
+                                        <th class="border-bottom-0">{{ __('main.proc') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -74,11 +78,13 @@
                                             <td>
                                                 @if ($invoice->status == 1)
                                                     <span class="badge badge-pill badge-success">
-                                                        {{ 'مدفوعه' }}</span>
+                                                        {{ __('main.paid') }}</span>
                                                 @elseif($invoice->status == 2)
-                                                    <span class="badge badge-pill badge-danger">{{ 'غير مدفوعه' }}</span>
+                                                    <span
+                                                        class="badge badge-pill badge-danger">{{ __('main.unpaid') }}</span>
                                                 @else
-                                                    <span class="badge badge-pill badge-info">{{ ' مدفوعه جزئيا' }}</span>
+                                                    <span
+                                                        class="badge badge-pill badge-info">{{ __('main.partial') }}</span>
                                                 @endif
                                             </td>
                                             <td>{{ $invoice->note }}</td>
@@ -87,24 +93,24 @@
                                                     <a class="btn btn-primary dropdown-toggle" href="#" role="button"
                                                         id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                                                         aria-expanded="false">
-                                                        العمليات
+                                                        {{ __('main.proc') }}
                                                     </a>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
                                                         <a class="dropdown-item"
-                                                            href="{{ route('invoicesDetails.show', $invoice->id) }}">عرض</a>
+                                                            href="{{ route('invoicesDetails.show', $invoice->id) }}">{{ __('main.show') }}</a>
                                                         @can('تعديل الفاتورة')
                                                             <a class="dropdown-item"
-                                                                href="{{ route('invoices.edit', $invoice->id) }}">تعديل </a>
+                                                                href="{{ route('invoices.edit', $invoice->id) }}">{{ __('main.edit') }} </a>
                                                         @endcan
                                                         @can('طباعةالفاتورة')
                                                             <a class="dropdown-item"
-                                                                href="{{ route('invoices.print', $invoice->id) }}">طباعه </a>
+                                                                href="{{ route('invoices.print', $invoice->id) }}">{{ __('main.print') }} </a>
                                                         @endcan
                                                         @can('تغير حالة الدفع')
                                                             <a class="dropdown-item"
-                                                                href="{{ route('invoices.show', $invoice->id) }}">تغيير حاله
-                                                                الدفع
+                                                                href="{{ route('invoices.show', $invoice->id) }}"> 
+                                                                {{ __('main.changstat') }}
                                                             </a>
                                                         @endcan
                                                         @can('حذف الفاتورة')
@@ -112,8 +118,8 @@
                                                                 method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit" class="btn btn btn-sm">حذف
-                                                                    الفاتوره</button>
+                                                                <button type="submit" class="btn btn btn-sm">
+                                                                    {{ __('main.die') }}  </button>
                                                             </form>
                                                         @endcan
                                                         @can('ارشفة الفاتورة')
@@ -122,8 +128,8 @@
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <input type="hidden" name="archieve_invoice" value="1">
-                                                                <button type="submit" class="btn btn btn-sm">نقل الى
-                                                                    الارشيف</button>
+                                                                <button type="submit" class="btn btn btn-sm"> 
+                                                                    {{ __('main.arch') }}  </button>
                                                             </form>
                                                         @endcan
                                                     </div>
@@ -144,9 +150,6 @@
         </div>
         <!--/div-->
     </div>
-
-
-
 
 
     </div>

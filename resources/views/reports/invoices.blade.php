@@ -15,7 +15,7 @@
     <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
 
 @section('title')
-    تقرير الفواتير
+{{ __('main.Invrep') }}
 @stop
 @endsection
 @section('page-header')
@@ -23,8 +23,9 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">التقارير</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ تقرير
-                الفواتير</span>
+            <h4 class="content-title mb-0 my-auto">{{ __('main.reports') }}</h4><span
+                class="text-muted mt-1 tx-13 mr-2 mb-0">/
+                {{ __('main.Invrep') }} </span>
         </div>
     </div>
 </div>
@@ -58,78 +59,79 @@
                         <div class="col-md mg-md-t-0">
                             <div class="card card-body bg-secondary tx-white bd-0">
                                 @if ($status == 1)
-                                    <p class="card-text"> {{ 'الفواتير المدفوعة' }}</p>
+                                    <p class="card-text"> {{ __('main.paidInv') }}</p>
                                 @elseif($status == 2)
-                                    <p class="card-text"> {{ 'الفواتير غير المدفوعة' }}</p>
+                                    <p class="card-text"> {{ __('main.unPaidInv') }}</p>
                                 @elseif($status == 3)
-                                    <p class="card-text"> {{ 'الفواتير المدفوعة جزئيا' }}</p>
+                                    <p class="card-text"> {{ __('main.partialInv') }}</p>
                                 @elseif($status == 3)
-                                    <p class="card-text"> {{ ' القائمه الكامله للفواتير' }}</p>
+                                    <p class="card-text"> {{ __('main.invlist') }}</p>
                                 @else
-                                    <p class="card-text"> {{ ' حدد نوع البحث' }}</p>
+                                    <p class="card-text"> {{ __('main.searchtype') }}</p>
                                 @endif
                             </div>
                         </div>
                     @endif
                     <div class="col-lg-3">
                         <label class="rdiobox">
-                            <input checked name="radio" type="radio" value="1" id="type_div"> <span>بحث
-                                بنوع
-                                الفاتورة</span></label>
+                            <input checked name="radio" type="radio" value="1" id="type_div"> <span>
+                                {{ __('main.chosinvtype') }}</span></label>
                     </div>
                     <div class="col-lg-3 mg-t-20 mg-lg-t-0">
-                        <label class="rdiobox"><input name="radio" value="2" type="radio"><span>بحث برقم
-                                الفاتورة
+                        <label class="rdiobox"><input name="radio" value="2" type="radio"><span>
+                                {{ __('main.searchinvnum') }}
                             </span></label>
                     </div><br><br>
+
+
                     <div class="row">
                         <div class="col-lg-3 mg-t-20 mg-lg-t-0" id="type">
-                            <p class="mg-b-10">تحديد نوع الفواتير</p><select class="form-control select2"
-                                name="status">
+                            <p class="mg-b-10"> {{ __('main.searchinvtype') }}
+                            </p><select class="form-control select2" name="status">
                                 <option value="" selected>
-                                    {{ 'حدد نوع الفواتير' }}
+                                   {{__('invtype')}}
                                 </option>
-                                <option value="1">الفواتير المدفوعة</option>
-                                <option value="2">الفواتير الغير مدفوعة</option>
-                                <option value="3">الفواتير المدفوعة جزئيا</option>
-                                <option value="4">القائمه الكامله للفواتير </option>
+                                <option value="1">{{ __('main.paidInv') }}</option>
+                                <option value="2">{{ __('main.unPaidInv') }}</option>
+                                <option value="3">{{ __('main.partialInv') }}</option>
+                                <option value="4">{{ __('main.invlist') }} </option>
 
                             </select>
                         </div><!-- col-4 -->
                         <div class="col-lg-3 mg-t-20 mg-lg-t-0" id="invoice_number">
-                            <p class="mg-b-10">البحث برقم الفاتورة</p>
-                            <input type="text" class="form-control" id="invoice_number" name="invoice_number" >
+                            <p class="mg-b-10"> {{ __('main.searchinvnum') }}</p>
+                            <input type="text" class="form-control" id="invoice_number" name="invoice_number">
 
                         </div><!-- col-4 -->
 
                         <div class="col-lg-3" id="start_at">
-                            <label for="exampleFormControlSelect1">من تاريخ</label>
+                            <label for="exampleFormControlSelect1"> {{ __('main.from') }}</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <i class="fas fa-calendar-alt"></i>
                                     </div>
                                 </div><input class="form-control fc-datepicker" value="{{ $start_at ?? '' }}"
-                                    name="start_at" placeholder="YYYY-MM-DD" type="text" >
+                                    name="start_at" placeholder="YYYY-MM-DD" type="text">
                             </div><!-- input-group -->
                         </div>
 
                         <div class="col-lg-3" id="end_at">
-                            <label for="exampleFormControlSelect1">الي تاريخ</label>
+                            <label for="exampleFormControlSelect1"> {{ __('main.To') }}</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <i class="fas fa-calendar-alt"></i>
                                     </div>
                                 </div><input class="form-control fc-datepicker" name="end_at"
-                                    value="{{ $end_at ?? '' }}" placeholder="YYYY-MM-DD" type="text" >
+                                    value="{{ $end_at ?? '' }}" placeholder="YYYY-MM-DD" type="text">
                             </div><!-- input-group -->
                         </div>
                     </div><br>
 
                     <div class="row">
                         <div class="col-sm-1 col-md-1">
-                            <button class="btn btn-primary btn-block">بحث</button>
+                            <button class="btn btn-primary ">{{ __('main.search') }}</button>
                         </div>
                     </div>
                 </form>
@@ -137,22 +139,23 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    @if (isset($invoices)&&!empty($invoices))
+                    @if (isset($invoices) && !empty($invoices))
                         <table id="example" class="table key-buttons text-md-nowrap" style=" text-align: center">
                             <thead>
+                                <th class="border-bottom-0">#</th>
                                 <tr>
                                     <th class="border-bottom-0">#</th>
-                                    <th class="border-bottom-0">رقم الفاتورة</th>
-                                    <th class="border-bottom-0">تاريخ القاتورة</th>
-                                    <th class="border-bottom-0">تاريخ الاستحقاق</th>
-                                    <th class="border-bottom-0">المنتج</th>
-                                    <th class="border-bottom-0">القسم</th>
-                                    <th class="border-bottom-0">الخصم</th>
-                                    <th class="border-bottom-0">نسبة الضريبة</th>
-                                    <th class="border-bottom-0">قيمة الضريبة</th>
-                                    <th class="border-bottom-0">الاجمالي</th>
-                                    <th class="border-bottom-0">الحالة</th>
-                                    <th class="border-bottom-0">ملاحظات</th>
+                                    <th class="border-bottom-0">{{ __('main.invoiceNum') }} </th>
+                                    <th class="border-bottom-0">{{ __('main.invdate') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.duedate') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.product') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.section') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.discount') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.taxrate') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.taxvat') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.tot') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.status') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.notes') }}</th>
                                 </tr>
                             </thead>
                             <tbody>

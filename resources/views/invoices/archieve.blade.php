@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    ارشيف الفواتير
+{{ __('main.archieve') }}
 @stop
 @section('css')
     @include('inc.css')
@@ -10,8 +10,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">الفواتير</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ ارشيف
-                    الفواتير
+                <h4 class="content-title mb-0 my-auto">{{ __('main.inv') }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ 
+                    {{ __('main.archieve') }}
 
                 </span>
             </div>
@@ -35,18 +35,18 @@
                             <thead>
                                 <tr>
                                     <th class="border-bottom-0">#</th>
-                                    <th class="border-bottom-0">رقم الفاتورة</th>
-                                    <th class="border-bottom-0">تاريخ القاتورة</th>
-                                    <th class="border-bottom-0">تاريخ الاستحقاق</th>
-                                    <th class="border-bottom-0">القسم</th>
-                                    <th class="border-bottom-0">المنتج</th>
-                                    <th class="border-bottom-0">مبلغ العموله</th>
-                                    <th class="border-bottom-0">الخصم</th>
-                                    <th class="border-bottom-0">نسبة الضريبة</th>
-                                    <th class="border-bottom-0">قيمة الضريبة</th>
-                                    <th class="border-bottom-0">الاجمالي</th>
-                                    <th class="border-bottom-0">ملاحظات</th>
-                                    <th class="border-bottom-0">العمليات</th>
+                                    <th class="border-bottom-0">{{ __('main.invoiceNum') }} </th>
+                                    <th class="border-bottom-0">{{ __('main.invdate') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.duedate') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.section') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.product') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.commis') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.discount') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.taxrate') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.taxvat') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.tot') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.notes') }}</th>
+                                    <th class="border-bottom-0">{{ __('main.proc') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -73,15 +73,15 @@
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                     <a class="dropdown-item"
-                                                        href="{{ route('invoicesDetails.show', $invoice->id) }}">عرض</a>
+                                                        href="{{ route('invoicesDetails.show', $invoice->id) }}">{{ __('main.show') }}</a>
                                                     <a class="dropdown-item"
-                                                        href="{{ route('archieve.restore', $invoice->id) }}">نقل الى الفواتير</a>
+                                                        href="{{ route('archieve.restore', $invoice->id) }}">{{ __('main.movtoinv') }}</a>
                                                     <form action="{{ route('archieve.destroy', $invoice->id) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn btn-sm">حذف
-                                                            الفاتوره</button>
+                                                        <button type="submit" class="btn btn btn-sm">
+                                                            {{ __('main.die') }}</button>
 
                                                     </form>
                                                 </div>

@@ -2,7 +2,7 @@
 @section('css')
 
 @section('title')
-    المستخدمين
+    {{ __('main.users') }}
 @stop
 
 <!-- Internal Data table css -->
@@ -21,8 +21,9 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">المستخدمين</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ قائمة
-                المستخدمين</span>
+            <h4 class="content-title mb-0 my-auto"> {{ __('main.users') }}</h4><span
+                class="text-muted mt-1 tx-13 mr-2 mb-0">/
+                {{ __('main.userslist') }} </span>
         </div>
     </div>
 </div>
@@ -44,7 +45,8 @@
             <div class="card-header pb-0">
                 <div class="col-sm-1 col-md-2">
                     @can('اضافة مستخدم')
-                        <a class="btn btn-primary btn-sm" href="{{ route('users.create') }}">اضافة مستخدم</a>
+                        <a class="btn btn-primary " href="{{ route('users.create') }}" role="button">
+                            {{ __('main.addus') }} </a>
                     @endcan
                 </div>
             </div>
@@ -54,11 +56,11 @@
                         <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
-                                <th class="wd-15p border-bottom-0">اسم المستخدم</th>
-                                <th class="wd-20p border-bottom-0">البريد الالكتروني</th>
-                                <th class="wd-15p border-bottom-0">حالة المستخدم</th>
-                                <th class="wd-15p border-bottom-0">نوع المستخدم</th>
-                                <th class="wd-10p border-bottom-0">العمليات</th>
+                                <th class="wd-15p border-bottom-0">{{ __('main.username') }} </th>
+                                <th class="wd-20p border-bottom-0">{{ __('main.Email') }} </th>
+                                <th class="wd-15p border-bottom-0">{{ __('main.userstauts') }} </th>
+                                <th class="wd-15p border-bottom-0"> {{ __('main.userType') }}</th>
+                                <th class="wd-10p border-bottom-0">{{ __('main.proc') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -70,11 +72,11 @@
                                     <td>
                                         @if ($user->status == 'مفعل')
                                             <span class="label text-success d-flex">
-                                                <div class="dot-label bg-success ml-1"></div>{{ $user->status }}
+                                                <div class="dot-label bg-success ml-1"></div>{{ __('main.active') }}
                                             </span>
                                         @else
                                             <span class="label text-danger d-flex">
-                                                <div class="dot-label bg-danger ml-1"></div>{{ $user->status }}
+                                                <div class="dot-label bg-danger ml-1"></div>{{ __('main.unactive') }}
                                             </span>
                                         @endif
                                     </td>
@@ -92,19 +94,20 @@
                                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
                                                 id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="false">
-                                                العمليات
+                                                {{ __('main.proc') }}
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                 {{-- @can('تعديل مستخدم') --}}
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('users.edit', $user->id) }}">تعديل </a>
+                                                <a class="dropdown-item" href="{{ route('users.edit', $user->id) }}">
+                                                    {{ __('main.edit') }} </a>
                                                 {{-- @endcan --}}
                                                 @can('حذف مستخدم')
                                                     <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn btn-sm">حذف
-                                                            مستخدم</button>
+                                                        <button type="submit" class="btn btn btn-sm">{{ __('main.die') }}
+                                                            {{ __('main.user') }}
+                                                        </button>
                                                     </form>
                                                 @endcan
 

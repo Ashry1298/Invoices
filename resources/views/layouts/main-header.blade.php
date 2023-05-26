@@ -17,35 +17,22 @@
                 <a class="close-toggle" href="#"><i class="header-icons fe fe-x"></i></a>
             </div>
             <div class="main-header-center mr-3 d-sm-none d-md-none d-lg-block">
-                <input class="form-control" placeholder="Search for anything..." type="search"> <button class="btn"><i
-                        class="fas fa-search d-none d-md-block"></i></button>
+                <input class="form-control" placeholder="Search for anything..." type="search"> <button
+                    class="btn"><i class="fas fa-search d-none d-md-block"></i></button>
             </div>
         </div>
         <div class="main-header-right">
-            <ul class="nav">
-                <li class="">
-                    <div class="dropdown  nav-itemd-none d-md-flex">
-                        <a href="#" class="d-flex  nav-item nav-link pl-0 country-flag1" data-toggle="dropdown"
-                            aria-expanded="false">
-                            <span class="avatar country-Flag mr-0 align-self-center bg-transparent"><img
-                                    src="{{ URL::asset('assets/img/flags/us_flag.jpg') }}" alt="img"></span>
-                            <div class="my-auto">
-                                <strong class="mr-2 ml-2 my-auto">English</strong>
-                            </div>
-                            
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow" x-placement="bottom-end">
-                            <a href="#" class="dropdown-item d-flex ">
-                                <span class="avatar  ml-3 align-self-center bg-transparent"><img
-                                        src="{{ URL::asset('assets/img/flags/egypt.jpg') }}" alt="img"></span>
-                                <div class="d-flex">
-                                    <span class="mt-2">Arabic</span>
-                                </div>
-                            </a>
-                        </div>
+            <li class="nav-item dropdown">
+                <!-- Example split danger button -->
+                <div class="row row-xs wd-xl-80p">
+                    <div class="col-sm-6 col-md-3">
+                        <button data-toggle="dropdown" class="btn btn-secondary-gradient btn-sm">{{__('main.lang')}} <i class="icon ion-ios-arrow-down tx-11 mg-l-3"></i></button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{route('lang.change','ar')}}">العربيه</a>
+                            <a class="dropdown-item" href="{{route('lang.change','en')}}">English</a>
+                        </div><!-- dropdown-menu -->
                     </div>
-                </li>
-            </ul>
+            </li>
             <div class="nav nav-item  navbar-nav-right ml-auto">
                 <div class="nav-link" id="bs-example-navbar-collapse-1">
                     <form class="navbar-form" role="search">
@@ -67,13 +54,13 @@
                         </div>
                     </form>
                 </div>
-     
+
                 @can('الاشعارات')
                     <div class="dropdown nav-item main-header-notification">
                         <a class="new nav-link" href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                class="feather feather-bell">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-bell">
                                 <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                                 <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                             </svg><span class=" pulse"></span></a>
@@ -94,7 +81,7 @@
                                 @foreach (auth()->user()->unreadNotifications as $notification)
                                     <div class="main-notification-list Notification-scroll">
                                         <a class="d-flex p-3 border-bottom"
-                                            href="{{ route('invoicesDetails.show',$notification->data['invoice_id']) }}">
+                                            href="{{ route('invoicesDetails.show', $notification->data['invoice_id']) }}">
                                             <div class="notifyimg bg-pink">
                                                 <i class="la la-file-alt text-white"></i>
                                             </div>
@@ -129,8 +116,8 @@
                     <div class="dropdown-menu">
                         <div class="main-header-profile bg-primary p-3">
                             <div class="d-flex wd-100p">
-                                <div class="main-img-user"><img alt="" src="{{ URL::asset('assets/img/faces/6.jpg') }}"
-                                        class=""></div>
+                                <div class="main-img-user"><img alt=""
+                                        src="{{ URL::asset('assets/img/faces/6.jpg') }}" class=""></div>
                                 <div class="mr-3 my-auto">
                                     <h6>{{ Auth::user()->name }}</h6><span>{{ Auth::user()->email }}</span>
                                 </div>
@@ -139,7 +126,8 @@
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i
                                 class="bx bx-log-out"></i>تسجيل خروج</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                            style="display: none;">
                             @csrf
                         </form>
 
@@ -147,9 +135,9 @@
                 </div>
                 <div class="dropdown main-header-message right-toggle">
                     <a class="nav-link pr-0" data-toggle="sidebar-left" data-target=".sidebar-left">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-menu">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="feather feather-menu">
                             <line x1="3" y1="12" x2="21" y2="12"></line>
                             <line x1="3" y1="6" x2="21" y2="6"></line>
                             <line x1="3" y1="18" x2="21" y2="18"></line>

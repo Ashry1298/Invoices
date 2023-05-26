@@ -2,7 +2,7 @@
 <a class="btn btn-danger" href="{{ $url }}"
     onclick="event.preventDefault();
               document.getElementById('item-{{ $item }}').submit();">
-    حذف
+    {{__('main.die')}}
 </a>
 <form id='item-{{ $item }}' action="{{ $url }}" method="POST" class="d-none">
     @csrf
