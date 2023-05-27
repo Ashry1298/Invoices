@@ -16,10 +16,19 @@
  <!---Internal Fancy uploader css-->
  <link href="{{ URL::asset('assets/plugins/fancyuploder/fancy_fileupload.css') }}" rel="stylesheet" />
  <!--Internal Sumoselect css-->
- <link rel="stylesheet" href="{{ URL::asset('assets/plugins/sumoselect/sumoselect-rtl.css') }}">
- <!--Internal  TelephoneInput css-->
- <link rel="stylesheet" href="{{ URL::asset('assets/plugins/telephoneinput/telephoneinput-rtl.css') }}">
 
+ @php
+     $lang = app()->getLocale();
+ @endphp
+ @if ($lang == 'ar')
+     <link rel="stylesheet" href="{{ URL::asset('assets/plugins/sumoselect/sumoselect-rtl.css') }}">
+     <!--Internal  TelephoneInput css-->
+     <link rel="stylesheet" href="{{ URL::asset('assets/plugins/telephoneinput/telephoneinput-rtl.css') }}">
+ @else
+     <link rel="stylesheet" href="{{ URL::asset('assets/plugins/sumoselect/sumoselect.css') }}">
+     <!--Internal  TelephoneInput css-->
+     <link rel="stylesheet" href="{{ URL::asset('assets/plugins/telephoneinput/telephoneinput.css') }}">
+ @endif
 
  <!---Internal  Prism css-->
  <link href="{{ URL::asset('assets/plugins/prism/prism.css') }}" rel="stylesheet">
@@ -27,8 +36,8 @@
  <link href="{{ URL::asset('assets/plugins/inputtags/inputtags.css') }}" rel="stylesheet">
  <!--- Custom-scroll -->
  <link href="{{ URL::asset('assets/plugins/custom-scroll/jquery.mCustomScrollbar.css') }}" rel="stylesheet">
- 
-  <!--  Owl-carousel css-->
-  <link href="{{ URL::asset('assets/plugins/owl-carousel/owl.carousel.css') }}" rel="stylesheet" />
-  <!-- Maps css -->
-  <link href="{{ URL::asset('assets/plugins/jqvmap/jqvmap.min.css') }}" rel="stylesheet">
+
+ <!--  Owl-carousel css-->
+ <link href="{{ URL::asset('assets/plugins/owl-carousel/owl.carousel.css') }}" rel="stylesheet" />
+ <!-- Maps css -->
+ <link href="{{ URL::asset('assets/plugins/jqvmap/jqvmap.min.css') }}" rel="stylesheet">
