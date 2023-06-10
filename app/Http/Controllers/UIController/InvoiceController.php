@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\UiController;
+
 use App\Models\User;
 use Faker\Core\File;
 use App\Models\Invoice;
@@ -73,9 +74,7 @@ class InvoiceController extends Controller
         $invoice = Invoice::create(
             $invoice_data
         );
-
         Invoices_details::create([
-            // $invoice_data
             'invoice_number' => $request->invoice_number,
             'product' => $request->product,
             'section' => $request->section_id,
@@ -274,8 +273,12 @@ class InvoiceController extends Controller
         return Excel::download(new ArchievedInvoicesExport, 'ArchievedInvoices.xlsx');
     }
 
-    public function markAsReadAll()
+    public function markAsReadAll($id)
     {
-        auth()->user()->unReadNotifications();
+        $user =User::find($id);
+        foreach ($user->unreadNotifications as $notification) {
+            $notification->markAsRead();
+        }
+        return redirect()->back();  
     }
 }

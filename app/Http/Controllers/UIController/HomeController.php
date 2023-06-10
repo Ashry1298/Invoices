@@ -24,13 +24,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+   
     public function index()
     {
 
         $paidName = __('main.paidInv');
         $unPaidName = __('main.unPaidInv');
         $partialName = __('main.partialInv');
-        $invperc=__('main.invPercen');
+        $invperc = __('main.invPercen');
         // ExampleController.php
         $totalCount = Invoice::where('id', '!=', 0)->count();
         if ($totalCount) {
@@ -44,7 +45,7 @@ class HomeController extends Controller
                 ->name('barChartTest')
                 ->type('bar')
                 ->size(['width' => 100, 'height' => 100])
-                ->labels([$paidName,$unPaidName ,$partialName])
+                ->labels([$paidName, $unPaidName, $partialName])
                 ->datasets([
                     [
                         "label" => $invperc,
@@ -67,7 +68,7 @@ class HomeController extends Controller
                 ->name('pieChartTest')
                 ->type('pie')
                 ->size(['width' => 200, 'height' => 200])
-                ->labels([$paidName,$unPaidName ,$partialName])
+                ->labels([$paidName, $unPaidName, $partialName])
                 ->datasets([
                     [
                         'backgroundColor' => ['#48d6a8', '#f7778c', '#efa65f'],

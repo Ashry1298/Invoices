@@ -25,9 +25,6 @@ class CreateAdminUserSeeder extends Seeder
             'roles_name' => 'owner',
             'status' => 'مفعل'
         ]);
-        $role = Role::create(['name' => 'owner']);
-        $permissions = Permission::pluck('id', 'id')->all();
-        $role->syncPermissions($permissions);
-        $user->assignRole([$role->id]);
+  
     }
 }

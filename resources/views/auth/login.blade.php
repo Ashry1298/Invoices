@@ -1,7 +1,6 @@
 @extends('layouts.master2')
-
 @section('title')
-    تسجيل الدخول
+    {{ __('main.login') }}
 @endsection
 @section('css')
     <!-- Sidemenu-respoansive-tabs css -->
@@ -23,16 +22,16 @@
                                     <div class="mb-5 d-flex"> <a href="#"><img
                                                 src="{{ URL::asset('assets/img/brand/favicon.png') }}"
                                                 class="sign-favicon ht-40" alt="logo"></a>
-                                        <h1 class="main-logo1 ml-1 mr-0 my-auto tx-28">برنامج الفواتير</h1>
+                                        <h1 class="main-logo1 ml-1 mr-0 my-auto tx-28"> {{ __('main.invPro') }}</h1>
                                     </div>
                                     <div class="card-sigin">
                                         <div class="main-signup-header">
-                                            <h2>مرحبا بك</h2>
-                                            <h5 class="font-weight-semibold mb-4"> تسجيل الدخول</h5>
+                                            <h2> {{ __('main.welcome') }}</h2>
+
                                             <form method="POST" action="{{ route('login') }}">
                                                 @csrf
                                                 <div class="form-group">
-                                                    <label>البريد الالكتروني</label>
+                                                    <label>{{ __('main.email') }}</label>
                                                     <input id="email" type="email"
                                                         class="form-control @error('email') is-invalid @enderror"
                                                         name="email" value="{{ old('email') }}" required
@@ -45,7 +44,7 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label>كلمة المرور</label>
+                                                    <label>{{ __('main.pass') }} </label>
 
                                                     <input id="password" type="password"
                                                         class="form-control @error('password') is-invalid @enderror"
@@ -56,6 +55,7 @@
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                     @enderror
+
                                                     <div class="form-group row">
                                                         <div class="col-md-6 offset-md-4">
                                                             <div class="form-check">
@@ -64,19 +64,24 @@
                                                                     {{ old('remember') ? 'checked' : '' }}>
                                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                 <label class="form-check-label" for="remember">
-                                                                    {{ __('تذكرني') }}
+                                                                    {{ __('main.rememberme') }}
                                                                 </label>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-												{{-- <div>
-													<label> ليس لديك حساب ! قم بالتسجيل</label>
-													<a class="nav-link"
-														href="{{ route('register') }}">{{ __('تسجيل') }}</a>
-												</div> --}}
+                                                @if (session()->has('error'))
+                                                    <div class="alert alert-danger alert-dismissible fade show"
+                                                        role="alert">
+                                                        <strong>{{ session()->get('error') }}</strong>
+                                                        <button type="button" class="close" data-dismiss="alert"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                @endif
                                                 <button type="submit" class="btn btn-main-primary btn-block">
-                                                    {{ __('تسجيل الدخول') }}
+                                                    {{ __('main.login') }}
                                                 </button>
                                             </form>
                                         </div>
@@ -91,7 +96,7 @@
             <div class="col-md-6 col-lg-6 col-xl-7 d-none d-md-flex bg-primary-transparent">
                 <div class="row wd-100p mx-auto text-center">
                     <div class="col-md-12 col-lg-12 col-xl-12 my-auto mx-auto wd-100p">
-                        <img src="{{ URL::asset('assets/img/media/login.png') }}"
+                        <img src="{{ URL::asset('assets/img/brand/favicon.png') }}"
                             class="my-auto ht-xl-80p wd-md-100p wd-xl-80p mx-auto" alt="logo">
                     </div>
                 </div>

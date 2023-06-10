@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Section;
-use Illuminate\Support\Str;
-use Illuminate\Database\Seeder;
+use App\Models\Product;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
-class SectionSeeder extends Seeder
+class ProductSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,10 +15,10 @@ class SectionSeeder extends Seeder
     public function run(): void
     {
         for ($i = 0; $i < 10; $i++) {
-            $section = Section::create([
-                'section_name' => Str::random(10),
+            Product::create([
+                'product_name' => Str::random(10),
                 'description' => Str::random(10),
-                'created_by' => Str::random(10),
+                'section_id' => fake()->numberBetween(1, 10),
             ]);
         }
     }
