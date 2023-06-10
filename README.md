@@ -1,6 +1,13 @@
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
+#cd Project 
+#run composer install 
+#copy .env.example to .env
+#open .env and update the database info
+#run php artisan key:generate
+#run php artisan migrate --seed
+#run php artisan serve
+#Go to link localhost:8000 OR 127.0.0.1:8000 
 
 ## About Laravel
 
